@@ -63,6 +63,13 @@ spring:
           min-idle: 0
       timeout: 5000ms
 
+    #rabbitmq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
 
 # Swagger界面内容配置
 swagger:
