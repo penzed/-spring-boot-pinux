@@ -1,5 +1,13 @@
 
 spring:
+  profiles:
+    active: dev
+
+  devtools:
+    restart:
+      exclude: static/**,public/**
+      enabled: true
+
   datasource:
     # 使用阿里的Druid连接池
     type: com.alibaba.druid.pool.DruidDataSource
@@ -69,7 +77,17 @@ spring:
     port: 5672
     username: guest
     password: guest
-
+  mail:
+    host: smtp.qq.com
+    username: 1063440021@qq.com
+    password: pinux123,.
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
+          required: true
 
 # Swagger界面内容配置
 swagger:
@@ -87,3 +105,4 @@ logging:
   config: classpath:logback-conf.xml
   level:
     com.pinux.mapper: DEBUG
+

@@ -2,6 +2,9 @@ package com.pinux.service.user;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.pinux.entity.user.User;
+import org.springframework.cache.annotation.Cacheable;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.pinux.entity.user.User;
  */
 public interface UserService extends IService<User> {
 
+
+    List<User> findByName(String aaa);
 }

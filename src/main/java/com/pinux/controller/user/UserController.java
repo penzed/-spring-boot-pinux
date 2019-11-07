@@ -25,6 +25,7 @@ import java.util.List;
 @Api("用户操作接口")
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pinux.mapper.logger.LoggerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pinux.entity.logger.Logger">
+        <result column="id" property="id" />
+        <result column="client_id" property="clientId" />
+        <result column="url" property="url" />
+        <result column="type" property="type" />
+        <result column="method" property="method" />
+        <result column="param" property="param" />
+        <result column="session_id" property="sessionId" />
+        <result column="ctime" property="ctime" />
+        <result column="return_time" property="returnTime" />
+        <result column="code" property="code" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, client_id, url, type, method, param, session_id, ctime, return_time, code
+    </sql>
+
+</mapper>
