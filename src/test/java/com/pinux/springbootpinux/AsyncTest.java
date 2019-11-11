@@ -1,17 +1,13 @@
 package com.pinux.springbootpinux;
 
 import com.pinux.config.async.AsyncTask;
-import com.pinux.entity.user.User;
-import com.pinux.service.user.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.concurrent.Future;
 
 /**
@@ -22,7 +18,7 @@ import java.util.concurrent.Future;
 * @version 1.0
 */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional
 public class AsyncTest {
 

@@ -1,13 +1,10 @@
 package com.pinux.springbootpinux;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pinux.entity.user.User;
-import com.pinux.mapper.user.UserMapper;
-import com.pinux.service.user.UserService;
+import com.pinux.entity.user.UserInfo;
+import com.pinux.service.user.UserInfoService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +27,7 @@ public class RedisTest {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
-    private UserService userService;
+    private UserInfoService userService;
 
     /**
      * @Author pinux
@@ -54,9 +51,9 @@ public class RedisTest {
      **/
     @Test
     public void testUserRedis(){
-        User user=userService.getById("7");
+        UserInfo user=userService.getById("7");
         stringRedisTemplate.opsForValue().set(user.getName(), JSONObject.toJSONString(user));
-        User u = JSONObject.parseObject(stringRedisTemplate.opsForValue().get(user.getName()),User.class);
+        UserInfo u = JSONObject.parseObject(stringRedisTemplate.opsForValue().get(user.getName()),UserInfo.class);
         System.out.println(u.toString());
 
     }

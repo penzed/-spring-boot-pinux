@@ -1,7 +1,7 @@
 package com.pinux.mapper.user;
 
+import com.pinux.entity.user.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.pinux.entity.user.User;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.pinux.entity.user.User;
  * </p>
  *
  * @author pinux
- * @since 2019-09-24
+ * @since 2019-11-10
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
 }

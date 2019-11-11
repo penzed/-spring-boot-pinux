@@ -1,17 +1,19 @@
 package com.pinux.entity.user;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.pinux.entity.role.Role;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -19,11 +21,11 @@ import java.util.Date;
  * </p>
  *
  * @author pinux
- * @since 2019-09-24
+ * @since 2019-11-10
  */
-@TableName("pinux_user")
+@TableName("pinux_user_info")
 @ApiModel(description="用户实体")
-public class User extends Model<User> {
+public class UserInfo extends Model<UserInfo> {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +34,7 @@ public class User extends Model<User> {
      */
     @TableId(value = "id", type = IdType.UUID)
     @ApiModelProperty("用户编号")
-    private Long id;
+    private String id;
 
     /**
      * 姓名
@@ -43,24 +45,28 @@ public class User extends Model<User> {
     /**
      * 年龄
      */
-    @ApiModelProperty("用户年龄")
     private Integer age;
 
     /**
      * 邮箱
      */
-    @ApiModelProperty("用户邮箱")
     private String email;
 
     @ApiModelProperty(value = "创建时间", example = "2019-10-30 15:34:12")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date ctime;
 
-    public Long getId() {
+    private String password;
+
+    @ApiModelProperty("列表")
+    @TableField(exist = false)
+    private List<Role> roles;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getName() {
@@ -93,6 +99,22 @@ public class User extends Model<User> {
         this.ctime = ctime;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.id;
@@ -100,12 +122,12 @@ public class User extends Model<User> {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                ", ctime=" + ctime +
-                '}';
+        return "UserInfo{" +
+            "id=" + id +
+            ", name=" + name +
+            ", age=" + age +
+            ", email=" + email +
+            ", ctime=" + ctime +
+        "}";
     }
 }

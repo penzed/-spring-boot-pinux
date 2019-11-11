@@ -1,15 +1,21 @@
 package com.pinux.controller.user;
 
 
-import com.pinux.entity.user.User;
-import com.pinux.service.user.UserService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.pinux.entity.role.Role;
+import com.pinux.entity.role_user.RoleUser;
+import com.pinux.entity.user.UserInfo;
+import com.pinux.service.role.RoleService;
+import com.pinux.service.user.UserInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,37 +36,37 @@ public class UserController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    UserService userService;
+    UserInfoService userService;
 
     @ApiOperation(value = "获取用户列表", notes = "")
     @GetMapping(value = "/")
-    public List<User> getAllList() {
+    public List<UserInfo> getAllList() {
         return userService.list();
     }
 
     @ApiOperation(value = "创建用户", notes = "根据User对象创建用户")
-    @ApiImplicitParam(name = "user", value = "创建用户", required = true, dataType = "User")
+    @ApiImplicitParam(name = "user", value = "创建用户", required = true, dataType = "UserInfo")
     @PostMapping(value = "/")
-    public String addUser(@RequestBody User user) {
-        userService.save(user);
+    public String addUser(@RequestBody UserInfo user) {
+        userService.saveUserInfo(user,user.getRoles());
         return "success";
     }
 
     @ApiOperation(value = "获取用户详细信息", notes = "根据url的id来获取用户详细信息")
     @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "String", paramType = "query")
     @GetMapping(value = "/{id}")
-    public User getUser(String id) {
+    public UserInfo getUser(String id) {
         return userService.getById(id);
     }
 
     @ApiOperation(value = "更新用户详细信息", notes = "根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+            @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "UserInfo")
     })
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public String updateUser(String id, @RequestBody User user) {
-        User u = userService.getById(id);
+    public String updateUser(String id, @RequestBody UserInfo user) {
+        UserInfo u = userService.getById(id);
         u.setAge(user.getAge());
         u.setEmail(user.getEmail());
         u.setName(user.getName());
