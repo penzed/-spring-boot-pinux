@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pinux.mapper.role.RoleMapper">
+<mapper namespace="com.pinux.mapper.permission.PermissionMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.pinux.entity.role.Role">
-        <result column="id" property="id" />
+    <resultMap id="BaseResultMap" type="com.pinux.entity.permission.Permission">
+        <id column="id" property="id" />
+        <result column="url" property="url" />
         <result column="name" property="name" />
-        <result column="memo" property="memo" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, memo
+        id, url, name
     </sql>
 
 </mapper>

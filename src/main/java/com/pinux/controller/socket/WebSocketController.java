@@ -40,16 +40,6 @@ public class WebSocketController {
     @Autowired
     private SocketServer socketServer;
 
-    /**
-     *
-     * 客户端页面
-     * @return
-     */
-    @RequestMapping(value = "/index")
-    public String idnex() {
-
-        return "index";
-    }
 
     /**
      *

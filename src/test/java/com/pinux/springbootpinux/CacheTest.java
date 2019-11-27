@@ -1,7 +1,7 @@
 package com.pinux.springbootpinux;
 
-import com.pinux.entity.user.UserInfo;
-import com.pinux.service.user.UserInfoService;
+import com.pinux.entity.user.User;
+import com.pinux.service.user.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +23,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class CacheTest {
 
     @Autowired
-    private UserInfoService userService;
+    private UserService userService;
     @Autowired
     private CacheManager cacheManager;
 
     @Test
     public void testCache() throws Exception{
-        UserInfo users= userService.findByName("Jone");
-        UserInfo jack= userService.findByName("Jack");
+        User users= userService.findByUserName("test");
+        User jack= userService.findByUserName("test");
         System.out.println(cacheManager.getCacheNames().toString());
     }
 

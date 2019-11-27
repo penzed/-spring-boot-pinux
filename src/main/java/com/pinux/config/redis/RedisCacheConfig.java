@@ -37,8 +37,8 @@ import java.lang.reflect.Method;
  * @Version 1.0
  */
 @Configuration
-@EnableCaching
 public class RedisCacheConfig extends CachingConfigurerSupport {
+
 
     /**
      * 自定义生成key的规则
