@@ -1,8 +1,8 @@
 package com.pinux.controller.exam;
 
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -12,8 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author pinux
  * @since 2019-09-24
  */
-@Controller
+@RestController
 @RequestMapping("/exam")
 public class ExamController {
 
-}
+    @RequestMapping("/")
+    String index(){
+        return "hello 阿斯顿撒阿打算的撒的 阿斯蒂芬boot阿斯顿发送到发送到发放";
+    }
+
+
+}/**/

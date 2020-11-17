@@ -65,7 +65,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <!--必须要这个版本，其他版本不适合本示例-->
+            <!--必须要这个版本，其他版本不能配置yml-->
             <version>1.1.10</version>
         </dependency>
         <dependency>
@@ -137,6 +137,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--web-->
         <dependency>
@@ -151,13 +152,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>-->
-
-        <!-- shiro-spring -->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.4.0</version>
-        </dependency>
 
         <!-- jwt -->
         <dependency>
