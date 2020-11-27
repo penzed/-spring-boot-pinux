@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public String defaultErrorHandler(Exception ex) throws Exception {
-        log.error("***错误异常***", ex);
+        log.error("错误类：{}，错误行：{}",ex.getStackTrace()[0].getClassName(),ex.getStackTrace()[0].getLineNumber());
         return "错误异常"+ ex.getMessage();
     }
 
