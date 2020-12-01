@@ -1,9 +1,16 @@
 package com.pinux.controller.exam;
 
 
+import com.pinux.entity.user.User;
+import com.pinux.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -18,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExamController {
     @Value("${com.pinux.value}")
     private int i;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     String index(){
@@ -29,6 +38,5 @@ public class ExamController {
     public String error() throws Exception{
         throw new Exception();
     }
-
 
 }/**/

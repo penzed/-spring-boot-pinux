@@ -14,4 +14,6 @@ import com.pinux.entity.user.User;
 public interface UserService extends IService<User> {
 
     User findByUserName(String userName);
+
+    boolean saveUser(User aa);
 }

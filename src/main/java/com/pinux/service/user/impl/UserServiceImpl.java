@@ -8,10 +8,12 @@ import com.pinux.service.user.UserService;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author pinux
@@ -24,6 +26,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     @Cacheable
     public User findByUserName(String userName) {
-        return this.getOne(new QueryWrapper<User>().eq("user_name",userName));
+        return this.getOne(new QueryWrapper<User>().eq("user_name", userName));
+    }
+
+    @Override
+    @Transactional
+    public boolean saveUser(User aa) {
+        return this.save(aa);
     }
 }

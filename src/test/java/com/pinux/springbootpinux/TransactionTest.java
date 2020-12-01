@@ -6,19 +6,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.Date;
 
 /**
-* ExamController Tester.
-*
-* @author <Authors name>
-* @since <pre>ʮһ�� 5, 2019</pre>
-* @version 1.0
-*/
+ * ExamController Tester.
+ *
+ * @author <Authors name>
+ * @version 1.0
+ * @since <pre>ʮһ�� 5, 2019</pre>
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
@@ -29,28 +29,33 @@ public class TransactionTest {
 
     @Test
     @Transactional
-    public void transactionTest() throws Exception{
-        User aa=new User();
+    public void transactionTest() throws Exception {
+        User aa = new User();
         aa.setId("90");
         aa.setUserName("aa");
         aa.setPassword("a");
         aa.setStatus("1");
         aa.setCreateTime(new Date());
-        User bb=new User();
+        User bb = new User();
         bb.setId("91");
         bb.setUserName("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         bb.setPassword("bb");
         bb.setStatus("1");
         bb.setCreateTime(new Date());
-        User cc=new User();
+        User cc = new User();
         cc.setId("92");
         cc.setUserName("cc");
         cc.setPassword("cc");
         cc.setStatus("1");
         cc.setCreateTime(new Date());
-        userService.save(aa);
-        userService.save(bb);
-        userService.save(cc);
+        userService.saveUser(aa);
+        //去掉try。。catch会自动回滚事务
+        try {
+            userService.saveUser(bb);
+        } catch (Exception e) {
+            System.out.println("失败");
+        }
+        userService.saveUser(cc);
     }
 
 }
