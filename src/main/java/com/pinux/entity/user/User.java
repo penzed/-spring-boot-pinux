@@ -1,15 +1,19 @@
 package com.pinux.entity.user;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.pinux.entity.permission.Permission;
+import com.pinux.entity.role.Role;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -34,10 +38,34 @@ public class User extends Model<User> {
     private String password;
 
     @ApiModelProperty(value = "创建时间", example = "2019-10-30 15:34:12")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     private String status;
+
+    @TableField(exist=false)
+    @ApiModelProperty(value = "用户拥有角色")
+    private List<Role> roles;
+
+    @TableField(exist=false)
+    @ApiModelProperty(value = "用户拥有的权限")
+    private List<Permission> permissions;
+
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
 
     public String getId() {
         return id;

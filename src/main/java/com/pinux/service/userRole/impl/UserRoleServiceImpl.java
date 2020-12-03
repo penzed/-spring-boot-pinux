@@ -33,7 +33,7 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
 
     @Override
     public List<Role> findByUserName(String userName) {
-        User user=userService.getOne(new QueryWrapper<User>().eq("user_name",userName));
+        User user=userService.getOne(new QueryWrapper<User>().eq("username",userName));
         List<UserRole> userRoles=this.list(new QueryWrapper<UserRole>().eq("user_id",user.getId()));
         List<String> ids=userRoles.stream().map(x->x.getRoleId()).collect(Collectors.toList());
         List<Role> roles=roleService.list(new QueryWrapper<Role>().in("id",ids));

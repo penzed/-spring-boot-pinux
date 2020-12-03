@@ -108,3 +108,9 @@ logging:
 com:
   pinux:
     value: ${random.int}
+
+
+# 忽略鉴权url
+ignored:
+  urls:
+    - /permission/getMenuList/**

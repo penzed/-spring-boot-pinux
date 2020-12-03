@@ -24,9 +24,8 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
-    @Cacheable
     public User findByUserName(String userName) {
-        return this.getOne(new QueryWrapper<User>().eq("user_name", userName));
+        return this.getOne(new QueryWrapper<User>().eq("username", userName));
     }
 
     @Override
