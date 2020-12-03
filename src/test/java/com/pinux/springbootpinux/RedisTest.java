@@ -52,8 +52,8 @@ public class RedisTest {
     @Test
     public void testUserRedis(){
         User user=userService.getById("2");
-        stringRedisTemplate.opsForValue().set(user.getUserName(), JSONObject.toJSONString(user));
-        User u = JSONObject.parseObject(stringRedisTemplate.opsForValue().get(user.getUserName()),User.class);
+        stringRedisTemplate.opsForValue().set(user.getUsername(), JSONObject.toJSONString(user));
+        User u = JSONObject.parseObject(stringRedisTemplate.opsForValue().get(user.getUsername()),User.class);
         System.out.println(u.toString());
 
     }

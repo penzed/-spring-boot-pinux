@@ -32,19 +32,19 @@ public class TransactionTest {
     public void transactionTest() throws Exception {
         User aa = new User();
         aa.setId("90");
-        aa.setUserName("aa");
+        aa.setUsername("aa");
         aa.setPassword("a");
         aa.setStatus("1");
         aa.setCreateTime(new Date());
         User bb = new User();
         bb.setId("91");
-        bb.setUserName("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+        bb.setUsername("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         bb.setPassword("bb");
         bb.setStatus("1");
         bb.setCreateTime(new Date());
         User cc = new User();
         cc.setId("92");
-        cc.setUserName("cc");
+        cc.setUsername("cc");
         cc.setPassword("cc");
         cc.setStatus("1");
         cc.setCreateTime(new Date());
