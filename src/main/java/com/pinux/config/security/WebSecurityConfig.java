@@ -71,6 +71,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         }
 
         registry.and()
+                /*// 登录行为由自己实现，参考 AuthController#login
+                .formLogin().disable()
+                //httpBasic是由http协议定义的最基础的认证方式。每次请求时，在请求头Authorization参数中附带用户/密码的base64编码，参考base64。这个方式并不安全，不适合在web项目中使用。但它是一些现代主流认证的基础，而且在spring security的oauth中，内部认证默认就是用的httpBasic
+                .httpBasic().disable()
+                // 登出行为由自己实现，参考 AuthController#logout
+                .and().logout().disable()*/
                 //表单登录方式
                 .formLogin()
                 .loginPage("/common/needLogin")
@@ -78,6 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 .loginProcessingUrl("/login")
                 .permitAll()
                 //成功处理类
+                //如果配置了formLogin().disable()则不需要，同理logout().disable()也一样
                 .successHandler(successHandler)
                 //失败
                 .failureHandler(failHandler)

@@ -55,10 +55,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (StringUtils.isEmpty(header)) {
             header = request.getParameter(SecurityConstant.HEADER);
         }
-//        if (StringUtils.isEmpty(header) || !header.startsWith(SecurityConstant.TOKEN_SPLIT)) {
-//            filterChain.doFilter(request, response);
-//            return;
-//        }
         try {
             UsernamePasswordAuthenticationToken authentication = getAuthentication(request, response);
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -70,45 +66,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        //改写JWT
-        /*
-        String token = request.getHeader(SecurityConstant.HEADER);
-        if (!StringUtils.isEmpty(token)) {
-            // 解析token
-            Claims claims = null;
-            try {
-                claims = Jwts.parser()
-                        .setSigningKey(SecurityConstant.JWT_SIGN_KEY)
-                        .parseClaimsJws(token.replace(SecurityConstant.TOKEN_SPLIT, ""))
-                        .getBody();
-
-                //获取用户名
-                String username = claims.getSubject();
-
-                //获取权限
-                List<GrantedAuthority> authorities = new ArrayList<>();
-                String authority = claims.get(SecurityConstant.AUTHORITIES).toString();
-
-                if (!StringUtils.isEmpty(authority)) {
-                    List<String> list = new Gson().fromJson(authority, new TypeToken<List<String>>() {
-                    }.getType());
-                    for (String ga : list) {
-                        authorities.add(new SimpleGrantedAuthority(ga));
-                    }
-                }
-                if (!StringUtils.isEmpty(username)) {
-                    // 此处password不能为null
-                    User principal = new User(username, "", authorities);
-                    return new UsernamePasswordAuthenticationToken(principal, null, authorities);
-                }
-            } catch (ExpiredJwtException e) {
-                throw new MyException("登录已失效，请重新登录");
-            } catch (Exception e) {
-                ResponseUtil.out(response, ResponseUtil.resultMap(false, 500, "解析token错误"));
-            }
-        }
-        return null;
-        */
         String token = request.getHeader(SecurityConstant.HEADER);
         if (!StringUtils.isEmpty(token)) {
             String userStr = redisTemplate.opsForValue().get("PINUX::USER::TOKEN" + token);

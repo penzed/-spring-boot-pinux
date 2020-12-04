@@ -34,6 +34,7 @@ public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHan
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         //登录次数限制
         if (e instanceof UsernameNotFoundException || e instanceof BadCredentialsException) {
+            // TODO: 2020/12/4 //登录次数限制
             ResponseUtil.out(response, ResponseUtil.resultMap(false, 500, "用户名或密码错误"));
         } else if (e instanceof DisabledException) {
             ResponseUtil.out(response, ResponseUtil.resultMap(false, 500, "账户被禁用，请联系管理员"));

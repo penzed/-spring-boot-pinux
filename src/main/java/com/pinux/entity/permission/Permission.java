@@ -29,55 +29,42 @@ public class Permission extends Model<Permission> {
     @ApiModelProperty(value = "id")
     private String id;
 
-    @TableId(value = "name")
     @ApiModelProperty(value = "菜单/权限名称")
     private String name;
 
-    @TableId(value = "tlevel")
     @ApiModelProperty(value = "层级")
     private Integer tlevel;
 
-    @TableId(value = "type")
     @ApiModelProperty(value = "类型 0页面 1具体操作")
     private Integer type;
 
-    @TableId(value = "title")
     @ApiModelProperty(value = "菜单标题")
     private String title;
 
-    @TableId(value = "path")
     @ApiModelProperty(value = "页面路径/资源链接url")
     private String path;
 
-    @TableId(value = "component")
     @ApiModelProperty(value = "前端组件")
     private String component;
 
-    @TableId(value = "icon")
     @ApiModelProperty(value = "图标")
     private String icon;
 
-    @TableId(value = "button_type")
     @ApiModelProperty(value = "按钮权限类型")
     private String buttonType;
 
-    @TableId(value = "parent_id")
     @ApiModelProperty(value = "父id")
     private String parentId;
 
-    @TableId(value = "description")
     @ApiModelProperty(value = "说明备注")
     private String description;
 
     @ApiModelProperty(value = "排序值")
-    @TableId(value = "sort_order")
     private BigDecimal sortOrder;
 
-    @TableId(value = "status")
     @ApiModelProperty(value = "是否启用 0启用 -1禁用")
     private Integer status = 0;
 
-    @TableId(value = "url")
     @ApiModelProperty(value = "网页链接")
     private String url;
 

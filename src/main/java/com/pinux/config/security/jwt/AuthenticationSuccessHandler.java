@@ -44,21 +44,6 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
         for (GrantedAuthority g : list) {
             authorities.add(g.getAuthority());
         }
-        /*
-        //登陆成功生成JWT
-        String token = Jwts.builder()
-                //主题 放入用户名
-                .setSubject(username)
-                //自定义属性 放入用户拥有请求权限
-                .claim(SecurityConstant.AUTHORITIES, new Gson().toJson(authorities))
-                //失效时间
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 1000))
-                //签名算法和密钥
-                .signWith(SignatureAlgorithm.HS512, SecurityConstant.JWT_SIGN_KEY)
-                .compact();
-        token = SecurityConstant.TOKEN_SPLIT + token;
-        */
-
         //改用redis存token
         String token = SecurityConstant.TOKEN_SPLIT + IdUtil.simpleUUID();//生成唯一token
         User u = userService.findByUserName(username);
@@ -66,7 +51,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
         redisTemplate.opsForValue().set("PINUX::USER::TOKEN" + token, JSONObject.toJSONString(u), 2L, TimeUnit.HOURS);
         String authoritiesKey = "PINUX::AUTHORITIES::LIST::" + username;
         redisTemplate.opsForValue().set(authoritiesKey, JSONObject.toJSONString(authorities), 2L, TimeUnit.HOURS);
-
+        // TODO: 2020/12/4 登录失败次数限制数据清除
 
         System.out.println("------------------登录成功");
         System.out.println("authentication = " + authentication);

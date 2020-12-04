@@ -22,7 +22,7 @@ public class Role extends Model<Role> {
 
     private String name;
 
-    private String memo;
+    private String description;
 
     public String getId() {
         return id;
@@ -38,12 +38,13 @@ public class Role extends Model<Role> {
     public void setName(String name) {
         this.name = name;
     }
-    public String getMemo() {
-        return memo;
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class Role extends Model<Role> {
         return "Role{" +
             "id=" + id +
             ", name=" + name +
-            ", memo=" + memo +
+            ", description=" + description +
         "}";
     }
 }
