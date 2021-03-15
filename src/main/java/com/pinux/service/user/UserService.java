@@ -2,6 +2,9 @@ package com.pinux.service.user;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.pinux.entity.user.User;
+import com.pinux.entity.user.Users;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,4 +19,6 @@ public interface UserService extends IService<User> {
     User findByUserName(String userName);
 
     boolean saveUser(User aa);
+
+    List<Users> getUsersList();
 }
